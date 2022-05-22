@@ -1,0 +1,147 @@
+﻿@model PaginatedList<CollegeManagement.Models.Student>
+
+@{
+    ViewBag.Title = "Student Details";
+
+}
+
+<form asp-action="GetAllDetails" method="get">
+    @*<div class="form-actions no-color">*@
+    <p>
+        <input type="text" name="SearchString" placeholder="Enter Student First Name or Last Name" value="@ViewData["CurrentFilter"]" style="width:350px" />
+        <input type="submit" value="Search" class="btn btn-primary" /> |
+        <a asp-action="GetAllDetails">Refresh</a>
+    </p>
+    @*</div>*@
+</form>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Students Details</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Student" asp-action="Register" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i></a>
+        </div>
+    </div>
+
+</div>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="GetAllDetails" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Address
+            </th>
+
+            <th>
+                Mobile Number
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Edit/Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Student" asp-action="GetUpdate" asp-route-Id="@item.Id" class="btn btn-primary mx-1"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Student" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1"><i class="bi bi-trash-fill"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="GetAllDetails"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="GetAllDetails"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+<br />
+<div>
+    <center>
+        <div class="row">
+            <div>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Home</a>
+            </div>
+
+            <div>
+                @using (Html.BeginForm("Export", "Export", FormMethod.Post))
+                {
+                    <input type="submit" value="Export" class="btn btn-success" />
+                }
+            </div>
+
+            @*<div>
+                      @using (Html.BeginForm("ExportCSV", "Export", FormMethod.Post))
+                      {
+                          <button type="submit" class="btn btn-success">
+                              <i>Download CSV</i>
+                          </button>
+                      }
+                </div>*@
+
+        </div>
+    </center>
+
+
+</div>
+

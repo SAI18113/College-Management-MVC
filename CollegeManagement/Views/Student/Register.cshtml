@@ -1,0 +1,83 @@
+﻿@model CollegeManagement.Models.ViewModels.StudentViewModel
+@{
+    ViewBag.Title = "Student Registration";
+
+}
+<div class="container">
+    <h2 class="text-center">REGISTRATION</h2>
+    <br />
+    <form method="post" asp-action="Register">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-outline">
+
+                    <label><b>FirstName:</b></label>
+                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>LastName:</b></label>
+                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>Address:</b></label>
+                    <input asp-for="Adress" class="form-control" placeholder="Address1" />
+                    <span asp-validation-for="Adress" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>Email:</b></label>
+                    <input asp-for="EmailId" class="form-control" placeholder="someone@miraclesoft.com" />
+                    <span asp-validation-for="EmailId" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-outline">
+                    <label><b>Mobile Number:</b></label>
+                    <input asp-for="Mobile" class="form-control" placeholder="Enter your Number" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>Age:</b></label>
+                    <input asp-for="Age" class="form-control" placeholder="Age" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>State:</b></label>
+                    <input asp-for="State" class="form-control" placeholder="State" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+
+                </div>
+                <br />
+                <div class="form-outline">
+                    <label><b>City:</b></label>
+                    <input asp-for="City" class="form-control" placeholder="City" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+
+            <input type="submit" class="btn-dark" value="Submit" />
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

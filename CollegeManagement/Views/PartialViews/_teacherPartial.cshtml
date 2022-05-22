@@ -1,0 +1,100 @@
+﻿@using CollegeManagement.Models;
+@model IEnumerable<CollegeManagement.Models.Teacher>
+
+@{
+    ViewBag.Title = "GetAllDetails";
+}
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-dark">Teacher Details</h2>
+            </div>
+            
+        </div>
+        <br />
+    </div>
+    <center>
+        <table class="table table-striped" style="width:85%">
+            <thead>
+                <tr>
+                    <th>
+
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                         Mobile
+                    </th>
+                    <th>
+                        Address
+                    </th>
+
+                    <th>
+                        State
+
+                    </th>
+                    <th>
+                        City
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewData.Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adress)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+
+                    <td class="btn-group">
+                        <a asp-action="Get" asp-controller="Teacher" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-controller="Teacher" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </center>
+    
+  
+</body>
+</html>
+
+
+
+
